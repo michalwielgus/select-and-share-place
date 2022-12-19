@@ -1,20 +1,15 @@
 const path = require('path');
+const CleanPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/app.ts',
   output: {
-    publicPath: '/dist/',
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, '/'),
-    },
-  },
-  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -31,6 +26,11 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js'],
   },
-
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new CleanPlugin.CleanWebpackPlugin(),
+    new HtmlWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'app.css',
+    }),
+  ],
 };
