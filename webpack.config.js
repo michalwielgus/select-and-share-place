@@ -5,9 +5,9 @@ module.exports = {
   mode: 'development',
   entry: './src/app.ts',
   output: {
-    publicPath: '/dist/',
+    publicPath: '/',
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '/'),
   },
   devServer: {
     static: {
